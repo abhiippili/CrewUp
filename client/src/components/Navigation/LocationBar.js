@@ -1,18 +1,30 @@
 import React from "react";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import { Autocomplete, Box, styled, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  styled,
+  TextField,
+  useMediaQuery
+} from "@mui/material";
+import { theme } from "./../../theme";
 
 const LocationBox = styled(Box)({
   display: "flex",
   height: "2.5rem",
-  width: "35%",
+  minWidth: "35%",
   alignItems: "center",
   border: "2px solid #544f4f",
   borderRadius: "0.75rem",
-  paddingLeft: "0.5rem"
+  paddingLeft: "0.5rem",
+  [theme.breakpoints.down("md")]: {
+    flex: 1
+  }
 });
 
 const LocationBar = () => {
+  const lgDownMatch = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <LocationBox>
       <MyLocationIcon fontSize="small" />
@@ -23,7 +35,7 @@ const LocationBar = () => {
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder="Select a location"
+            placeholder={lgDownMatch ? "Location" : "Select a location"}
             variant="outlined"
           />
         )}

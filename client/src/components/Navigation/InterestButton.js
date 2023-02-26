@@ -1,10 +1,15 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { theme } from "./../../theme";
 
 const InterestButtonBox = styled(Button)({
   display: "flex",
-  boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.4)"
+  boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.4)",
+  maxHeight: "2.8rem",
+  [theme.breakpoints.down("md")]: {
+    marginRight: "2rem"
+  }
 });
 
 const ButtonTextBox = styled(Box)({

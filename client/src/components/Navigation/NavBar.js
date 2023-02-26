@@ -21,18 +21,24 @@ const StyledToolbar = styled(Toolbar)({
   display: "flex"
 });
 
-const LogoBox = styled(Box)({
-  flex: 3
-});
-
 const Logo = styled(Typography)({
   color: "black",
   fontWeight: "600",
   fontFamily: "Poppins"
 });
 
+const LogoBox = styled(Box)({
+  flex: 3,
+  [theme.breakpoints.between("sm", "md")]: {
+    flex: 3
+  }
+});
+
 const LocAndSearchBox = styled(Box)({
   flex: 16,
+  [theme.breakpoints.between("sm", "md")]: {
+    flex: 4
+  },
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around"
@@ -42,12 +48,17 @@ const AddAndProfile = styled(Box)({
   flex: 8,
   display: "flex",
   justifyContent: "space-around",
-  alignItems: "center"
+  alignItems: "center",
+  [theme.breakpoints.between("sm", "md")]: {
+    flex: 10,
+    justifyContent: "end"
+  }
 });
 
 function NavBar() {
   const mdUpMatches = useMediaQuery(theme.breakpoints.up("md"));
   const smUpMatches = useMediaQuery(theme.breakpoints.up("sm"));
+  const smMdMatches = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const [worker, setWorker] = useState(false);
   const [user, setUser] = useState("abhishek");
@@ -65,6 +76,7 @@ function NavBar() {
             <LocationBar />
             {mdUpMatches && <SearchBar />}
           </LocAndSearchBox>
+          {/* {!mdUpMatches && <Box sx={{ flex: 2 }}></Box>} */}
           {/* box3 */}
           <AddAndProfile>
             <InterestButton />
