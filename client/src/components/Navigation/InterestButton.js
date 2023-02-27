@@ -31,7 +31,7 @@ const InterestButton = () => {
       <AddCircleIcon fontSize="small" />
       <ButtonTextBox>
         <ButtonText>Interest</ButtonText>
-        <ButtonText sx={{ fontSize: "0.5rem" }}>(For Workers)</ButtonText>
+        <ButtonText sx={{ fontSize: "0.5rem" }}>(List Interest)</ButtonText>
       </ButtonTextBox>
     </InterestButtonBox>
   );
