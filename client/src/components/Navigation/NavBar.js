@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import {
   AppBar,
+  backdropClasses,
   Box,
   Container,
   IconButton,
+  mobileStepperClasses,
   styled,
   Toolbar,
   Typography,
@@ -68,7 +70,7 @@ function NavBar() {
   const smDownMatches = !smUpMatches;
 
   const [worker, setWorker] = useState(false);
-  const [user, setUser] = useState("ab");
+  const [user, setUser] = useState("");
 
   return (
     <AppBar position="static" color="primary">
