@@ -23,7 +23,8 @@ import { theme } from "./../../theme";
 //1 : 2 : 4 -below sm
 
 const StyledToolbar = styled(Toolbar)({
-  display: "flex"
+  display: "flex",
+  fontFamily: "inherit"
 });
 
 const Logo = styled(Typography)({

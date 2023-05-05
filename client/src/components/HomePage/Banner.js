@@ -37,12 +37,14 @@ const SubText = styled(Typography)({
 
 const ActionButton = styled(Button)({
   border: "1px solid #FFC72C",
-  marginRight: "1rem"
+  marginRight: "1rem",
+  color: "#FFC72C",
+  fontFamily: "inherit"
 });
 
 const Banner = () => {
   return (
-    <Box sx={{ padding: "1rem", height: "300px" }}>
+    <Box sx={{ paddingTop: "0.5rem", height: "300px" }}>
       <BannerBox>
         <TextBox>
           <MainText variant="h3">Crew Up!</MainText>
@@ -51,19 +53,11 @@ const Banner = () => {
           </SubText>
         </TextBox>
         <Box>
-          <ActionButton
-            variant="outlined"
-            color="secondary"
-            sx={{ color: "#FFC72C" }}
-          >
+          <ActionButton variant="outlined" color="secondary">
             Sign Up As A Worker
           </ActionButton>
 
-          <ActionButton
-            variant="outlined"
-            color="secondary"
-            sx={{ color: "#FFC72C" }}
-          >
+          <ActionButton variant="outlined" color="secondary">
             Sign Up As A User
           </ActionButton>
         </Box>

@@ -1,34 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../components/HomePage/Banner";
-import Categories from "../components/HomePage/Categories";
-import Carousel from "react-multi-carousel";
-import { Box } from "@mui/material";
+import TaskCategories from "../components/HomePage/TaskCategories";
+import { Box, styled, Tab, Tabs, Typography } from "@mui/material";
+import PortfolioCategories from "../components/HomePage/PortfolioCategories";
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5
+const StyledTabs = styled(Tabs)({
+  "& .Mui-selected": {
+    backgroundColor: "#ffc72c38"
   },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
-};
+  marginTop: "0.5rem"
+});
+
+const StyledTab = styled(Tab)({
+  flex: 1,
+  fontWeight: 600,
+
+  color: "black",
+  fontSize: "1rem"
+});
+
+const tabComponents = [<TaskCategories />, <PortfolioCategories />];
 
 const Home = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+
   return (
     <>
       <Banner />
-      <Categories />
+      <StyledTabs
+        variant="fullWidth"
+        value={activeTab}
+        onChange={handleTabChange}
+        textColor="black"
+        TabIndicatorProps={{ style: { height: 3 } }}
+      >
+        <StyledTab label="Tasks Around Me" />
+        <StyledTab label="Portfolios Around Me" />
+      </StyledTabs>
+      {tabComponents[activeTab]}
     </>
   );
 };
