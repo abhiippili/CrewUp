@@ -71,7 +71,7 @@ function NavBar() {
   const smDownMatches = !smUpMatches;
 
   const [worker, setWorker] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("abhi");
 
   return (
     <AppBar position="static" color="primary">

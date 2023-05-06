@@ -44,7 +44,7 @@ const ActionButton = styled(Button)({
 
 const Banner = () => {
   return (
-    <Box sx={{ paddingTop: "0.5rem", height: "300px" }}>
+    <Box sx={{ paddingTop: "0.5rem", height: "240px" }}>
       <BannerBox>
         <TextBox>
           <MainText variant="h3">Crew Up!</MainText>

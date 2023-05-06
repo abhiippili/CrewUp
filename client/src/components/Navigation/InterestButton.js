@@ -30,8 +30,8 @@ const InterestButton = () => {
     <InterestButtonBox variant="contained" color="primary">
       <AddCircleIcon fontSize="small" />
       <ButtonTextBox>
-        <ButtonText>Interest</ButtonText>
-        <ButtonText sx={{ fontSize: "0.5rem" }}>(List Interest)</ButtonText>
+        <ButtonText>Post a task</ButtonText>
+        <ButtonText sx={{ fontSize: "0.5rem" }}>(List Jobs/Tasks)</ButtonText>
       </ButtonTextBox>
     </InterestButtonBox>
   );

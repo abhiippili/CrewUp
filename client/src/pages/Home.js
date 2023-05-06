@@ -7,14 +7,13 @@ import PortfolioCategories from "../components/HomePage/PortfolioCategories";
 const StyledTabs = styled(Tabs)({
   "& .Mui-selected": {
     backgroundColor: "#ffc72c38"
-  },
-  marginTop: "0.5rem"
+  }
 });
 
 const StyledTab = styled(Tab)({
   flex: 1,
   fontWeight: 600,
-
+  textTransform: "unset",
   color: "black",
   fontSize: "1rem"
 });
@@ -25,7 +24,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue);
+    return setActiveTab(newValue);
   };
 
   return (
@@ -38,8 +37,8 @@ const Home = () => {
         textColor="black"
         TabIndicatorProps={{ style: { height: 3 } }}
       >
-        <StyledTab label="Tasks Around Me" />
-        <StyledTab label="Portfolios Around Me" />
+        <StyledTab label="Tasks Around Me (For Workers)" />
+        <StyledTab label="Portfolios Around Me (For Users)" />
       </StyledTabs>
       {tabComponents[activeTab]}
     </>

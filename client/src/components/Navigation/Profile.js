@@ -15,6 +15,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { theme } from "../../theme";
+import { useNavigate } from "react-router-dom";
 
 const ProfileBox = styled(Box)({
   display: "flex",
@@ -30,6 +31,8 @@ const FlexBox = styled(Box)({
 });
 
 const Profile = ({ user, worker }) => {
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -72,22 +75,22 @@ const Profile = ({ user, worker }) => {
 
   // const unsignedOptions = [Sign In, Sign Up];
   const unsignedOptions = [
-    <FlexBox>
+    <FlexBox onClick={() => navigate("/signin")}>
       <LoginIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Sign In
     </FlexBox>,
-    <FlexBox>
+    <FlexBox onClick={() => navigate("/signup")}>
       <PersonAddIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Sign Up
     </FlexBox>
   ];
   // const signedOptions = ["My Contracts", "Profile", "Logout"];
   const signedOptions = [
-    <FlexBox>
+    <FlexBox onClick={() => navigate("/contracts")}>
       <ViewListIcon fontSize="small" sx={{ marginRight: "10px" }} />
       My Contracts
     </FlexBox>,
-    <FlexBox>
+    <FlexBox onClick={() => navigate("/profile")}>
       <PersonIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Profile
     </FlexBox>,
