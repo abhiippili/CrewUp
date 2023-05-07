@@ -30,7 +30,7 @@ const FlexBox = styled(Box)({
   alignItems: "center"
 });
 
-const Profile = ({ user, worker }) => {
+const Profile = ({ user }) => {
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -90,6 +90,10 @@ const Profile = ({ user, worker }) => {
       <ViewListIcon fontSize="small" sx={{ marginRight: "10px" }} />
       My Contracts
     </FlexBox>,
+    <FlexBox onClick={() => navigate("/portfolio")}>
+      <EngineeringIcon fontSize="small" sx={{ marginRight: "10px" }} />
+      Worker Portfolio
+    </FlexBox>,
     <FlexBox onClick={() => navigate("/profile")}>
       <PersonIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Profile
@@ -103,11 +107,7 @@ const Profile = ({ user, worker }) => {
   return (
     <>
       <ProfileBox onMouseOver={handleMouseEnter}>
-        {worker ? (
-          <EngineeringIcon fontSize="medium" />
-        ) : (
-          <AccountCircleIcon fontSize="medium" />
-        )}
+        <AccountCircleIcon fontSize="medium" />
         <Typography
           sx={{
             fontSize: "0.8rem",

@@ -24,3 +24,10 @@ body {
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border: none;
 }
+
+input[type="date"]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type="date"]:focus::-webkit-datetime-edit {
+  color: black !important;
+}

@@ -17,6 +17,7 @@ import SearchBar from "./SearchBar";
 import InterestButton from "./InterestButton";
 import Profile from "./Profile";
 import { theme } from "./../../theme";
+import { useNavigate } from "react-router-dom";
 
 //3 : 16 : 8 - above md
 //3 : 4 : 10 - above sm and below md
@@ -70,8 +71,9 @@ function NavBar() {
   const smMdMatches = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const smDownMatches = !smUpMatches;
 
-  const [worker, setWorker] = useState(false);
   const [user, setUser] = useState("abhi");
+
+  const navigate = useNavigate();
 
   return (
     <AppBar position="static" color="primary">
@@ -88,7 +90,9 @@ function NavBar() {
           <StyledToolbar>
             {/* box1 */}
             <LogoBox>
-              <Logo>Crew Up</Logo>
+              <Logo onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
+                Crew Up
+              </Logo>
             </LogoBox>
 
             {/* box2 */}
@@ -99,7 +103,7 @@ function NavBar() {
             {/* box3 */}
             <AddAndProfile>
               <InterestButton />
-              {smUpMatches && <Profile user={user} worker={worker} />}
+              {smUpMatches && <Profile user={user} />}
             </AddAndProfile>
           </StyledToolbar>
         )}

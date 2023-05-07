@@ -54,11 +54,11 @@ const Banner = () => {
         </TextBox>
         <Box>
           <ActionButton variant="outlined" color="secondary">
-            Sign Up As A Worker
+            Explore
           </ActionButton>
 
           <ActionButton variant="outlined" color="secondary">
-            Sign Up As A User
+            Sign Up
           </ActionButton>
         </Box>
       </BannerBox>
