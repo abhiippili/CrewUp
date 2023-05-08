@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Banner from "../components/HomePage/Banner";
 import TaskCategories from "../components/HomePage/TaskCategories";
-import { Box, styled, Tab, Tabs, Typography } from "@mui/material";
+import { Box, styled, Tab, Tabs } from "@mui/material";
 import PortfolioCategories from "../components/HomePage/PortfolioCategories";
+import Tasks from "./Tasks";
 
 const StyledTabs = styled(Tabs)({
   "& .Mui-selected": {

@@ -1,6 +1,7 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const BannerBox = styled(Box)({
   background: "#232526",
@@ -43,6 +44,8 @@ const ActionButton = styled(Button)({
 });
 
 const Banner = () => {
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ paddingTop: "0.5rem", height: "240px" }}>
       <BannerBox>
@@ -53,12 +56,20 @@ const Banner = () => {
           </SubText>
         </TextBox>
         <Box>
-          <ActionButton variant="outlined" color="secondary">
-            Explore
+          <ActionButton
+            variant="outlined"
+            color="secondary"
+            onClick={() => navigate("/tasks")}
+          >
+            Explore Tasks
           </ActionButton>
 
-          <ActionButton variant="outlined" color="secondary">
-            Sign Up
+          <ActionButton
+            variant="outlined"
+            color="secondary"
+            onClick={() => navigate("/portfolios")}
+          >
+            Explore Portfolios
           </ActionButton>
         </Box>
       </BannerBox>

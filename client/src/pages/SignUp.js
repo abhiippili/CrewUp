@@ -16,8 +16,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import MaleIcon from "@mui/icons-material/Male";
 import PlaceIcon from "@mui/icons-material/Place";
-import ClassIcon from "@mui/icons-material/Class";
-import SchoolIcon from "@mui/icons-material/School";
+
 import PasswordIcon from "@mui/icons-material/Password";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -30,7 +29,6 @@ const StyledPaper = styled(Paper)({
   marginBottom: "2rem",
   width: 400,
   padding: "12px 12px",
-  // border: "1px solid #032f2c",
   borderRadius: "1rem",
   background: "#fff"
 });
@@ -64,7 +62,6 @@ const LoginText = styled(Typography)({
 const AlternateText = styled(Typography)({
   fontFamily: "inherit",
   textAlign: "center",
-  // textDecoration: "underline",
   color: "#082567",
   cursor: "pointer"
 });
@@ -112,7 +109,7 @@ const SignUp = () => {
     console.log(user);
   };
 
-  const [next, setNext] = useState(true);
+  const [next, setNext] = useState(false);
 
   const handleFormSubmit = (e) => {
     if (next) {
@@ -330,7 +327,7 @@ const SignUp = () => {
             type="submit"
             sx={{ textTransform: "unset", fontFamily: "inherit" }}
           >
-            {next ? "Submit" : "Next"}
+            <b>{next ? "Submit" : "Next"}</b>
           </Button>
           <FlexText>
             <Typography>Already Signed Up? </Typography>
@@ -342,7 +339,7 @@ const SignUp = () => {
         Or
       </AlternateText>
       <AlternateText sx={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-        Look for <b>Tasks</b> around you as a <b>Guest</b>
+        Look for <b>Tasks</b> around you as a <b>Guest Worker</b>
       </AlternateText>
     </div>
   );

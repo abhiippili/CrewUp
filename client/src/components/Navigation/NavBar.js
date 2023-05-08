@@ -71,7 +71,7 @@ function NavBar() {
   const smMdMatches = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const smDownMatches = !smUpMatches;
 
-  const [user, setUser] = useState("abhi");
+  const [user, setUser] = useState("");
 
   const navigate = useNavigate();
 
