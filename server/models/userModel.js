@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please provide an email address"],
     unique: true,
     lowercase: true,
-    trim: true,
-    validate: [validator.isEmail, "Please provide a valid email address"]
+    trim: true
+    // validate: [validator.isEmail, "Please provide a valid email address"]
   },
   password: {
     type: String,
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
   dateOfBirth: {
-    type: Date,
+    type: String,
     required: [true, "Please provide date of birth"]
   },
   gender: {
@@ -62,4 +62,4 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = mongoose.model("User", userSchema);
-module.exportrs = User;
+module.exports = User;

@@ -32,5 +32,5 @@ const portfolioSchema = new mongoose.Schema({
   }
 });
 
-const Portfolio = mongoose.model("Portfolio", taskSchema);
+const Portfolio = mongoose.model("Portfolio", portfolioSchema);
 module.exports = Portfolio;

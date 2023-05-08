@@ -24,6 +24,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
+import { signUp } from "./../api/usersApi";
+import { useMutation } from "react-query";
+
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
   marginBottom: "2rem",
@@ -82,12 +85,16 @@ const SignUp = () => {
     username: "",
     dateOfBirth: "",
     gender: "",
-    phonenumber: "",
+    phoneNumber: "",
     city: "",
     address: "",
-    photo: "",
     password: "",
     confirmPassword: ""
+  });
+
+  const mutation = useMutation((paramObj) => signUp(paramObj), {
+    onSuccess(data) {},
+    onError(err) {}
   });
 
   const navigate = useNavigate();
@@ -113,7 +120,8 @@ const SignUp = () => {
 
   const handleFormSubmit = (e) => {
     if (next) {
-      return navigate("/");
+      mutation.mutate(user);
+      return;
     }
     setNext((next) => !next);
     e.preventDefault();

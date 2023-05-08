@@ -1,0 +1,35 @@
+[
+  {
+    "title": "constructor required",
+    "category": "construction",
+    "description": "need a daily wage construction worker ",
+    "workAddress": "15-142, Chinaamiram",
+    "workCity": "Bhimavaram",
+    "wage": 500,
+    "phoneNumber": 9999334444
+  },
+  {
+    "title": "need a skilled plumber ",
+    "category": "plumbing",
+    "workAddress": "12- 2, Mvp Colony",
+    "workCity": "Visakhapatnam",
+    "wage": 2000,
+    "phoneNumber": 8639778734
+  },
+  {
+    "title": "electrician needed",
+    "category": "electrical",
+    "workAddress": "sai colony, Mg road",
+    "workCity": "Vijayawada",
+    "wage": 1000,
+    "phoneNumber": 88899224242
+  },
+  {
+    "title": "gardener needed",
+    "category": "yard worker",
+    "workAddress": "Danavaipeta",
+    "workCity": "Rajahmundry",
+    "wage": 1000,
+    "phoneNumber": 8888444422
+  }
+]

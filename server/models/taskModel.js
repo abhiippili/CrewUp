@@ -24,7 +24,7 @@ const taskSchema = new mongoose.Schema({
     trim: true
   },
   wage: {
-    tpye: Number,
+    type: Number,
     required: [true, "Please provide a wage"],
     trim: true
   },
