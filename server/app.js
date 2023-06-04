@@ -15,7 +15,6 @@ app.use(cors());
 //route middlewares
 app.use("/api/users", usersRouter);
 app.use("/api/tasks", tasksRouter);
-app.use("/api/users", usersRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/locations", locationsRouter);
 app.use("/api/portfolios", portfoliosRouter);
