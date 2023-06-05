@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrpyt = require("bcrypt");
-const catchAsync = require("../utils/catchAsync");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -14,8 +13,8 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please provide an email address"],
     unique: true,
     lowercase: true,
-    trim: true
-    // validate: [validator.isEmail, "Please provide a valid email address"]
+    trim: true,
+    validate: [validator.isEmail, "Please provide a valid email address"]
   },
   password: {
     type: String,
@@ -65,17 +64,17 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
-  this.password = await bcrpyt.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 12);
   this.confirmPassword = undefined;
   next();
 });
 
-userSchema.methods.correctPassword = catchAsync(async function (
+userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
-  return bcrypt.compare(candidatePassword, userPassword);
-});
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 userSchema.methods.changedPasswordAfter = function (iat) {
   if (this.changedPasswordTime) {
