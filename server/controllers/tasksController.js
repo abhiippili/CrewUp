@@ -17,7 +17,7 @@ exports.getAllTasks = catchAsync(async (req, res, next) => {
 exports.getTask = catchAsync(async (req, res, next) => {
   const task = await Task.findById(req.params.id);
   if (!task) {
-    return new AppError("No task with that id", 404);
+    return next(new AppError("No task with that id", 404));
   }
   res.status(200).json({
     status: "success",
@@ -33,7 +33,7 @@ exports.getTasks = catchAsync(async (req, res, next) => {
     category: req.body.category
   });
   if (!tasks) {
-    return new AppError("No tasks", 404);
+    return next(new AppError("No tasks", 404));
   }
   res.status(200).json({
     status: "success",
@@ -47,7 +47,7 @@ exports.updateTask = catchAsync(async (req, res, next) => {
     runValidators: true
   });
   if (!task) {
-    return new AppError("No task with that id ", 404);
+    return next(new AppError("No task with that id ", 404));
   }
   res.status(200).json({
     status: "success",
