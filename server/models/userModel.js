@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrpyt = require("bcrypt");
+const catchAsync = require("../utils/catchAsync");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -19,7 +20,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide a password"],
-    minLength: 8
+    minLength: 8,
+    select: false
   },
   confirmPassword: {
     type: String,
@@ -30,6 +32,12 @@ const userSchema = new mongoose.Schema({
       },
       message: "The passwords do not match"
     }
+  },
+  //just to illustrate roles as well
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user"
   },
   phoneNumber: {
     type: Number,
@@ -49,7 +57,8 @@ const userSchema = new mongoose.Schema({
   city: {
     type: String,
     required: [true, "Please provide city name"]
-  }
+  },
+  changedPasswordTime: Date
 });
 
 userSchema.pre("save", async function (next) {
@@ -60,6 +69,20 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
   next();
 });
+
+userSchema.methods.correctPassword = catchAsync(async function (
+  candidatePassword,
+  userPassword
+) {
+  return bcrypt.compare(candidatePassword, userPassword);
+});
+
+userSchema.methods.changedPasswordAfter = function (iat) {
+  if (this.changedPasswordTime) {
+    return iat < parseInt(this.changedPasswordTime.getTime() / 1000, 10);
+  }
+  return false;
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
