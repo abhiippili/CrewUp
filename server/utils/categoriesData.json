@@ -1,12 +1,31 @@
 [
-  { "categoryName": "Contracts" },
-  { "categoryName": "Construction" },
-  { "categoryName": "Electrical" },
-  { "categoryName": "Painting" },
-  { "categoryName": "Carpenting" },
-  { "categoryName": "False Ceiling" },
-  { "categoryName": "Plumbing" },
-  { "categoryName": "Appliance Repairs" },
-  { "categoryName": "Help Moving" },
-  { "categoryName": "Yard Working" }
+  { "category": "Construction" },
+  {
+    "category": "Repair And Maintenance",
+    "subCategories": [
+      { "subCategory": "Electrical" },
+      { "subCategory": "Painting" },
+      { "subCategory": "Carpentry" },
+      { "subCategory": "Plumbing" },
+      { "subCategory": "False Ceiling" },
+      { "subCategory": "Appliance Installation and Repairs" }
+    ]
+  },
+  { "category": "House Keeping" },
+  { "category": "Taxi and Driving" },
+  { "category": "Delivery" },
+  {
+    "category": "Care Taking",
+    "subCategories": [
+      { "subCategory": "Child Care" },
+      { "subCategory": "Elder Care" },
+      { "subCategory": "Pet Care" }
+    ]
+  },
+  { "category": "Cooking" },
+  { "category": "Tutoring" },
+  { "category": "Photography and Videography" },
+  { "category": "Interior Decorations" },
+  { "category": "Help Moving" },
+  { "category": "Gardening" }
 ]
