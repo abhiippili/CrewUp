@@ -1,8 +1,15 @@
 const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema({
-  categoryName: {
+  category: {
     type: String,
     required: [true, "Please provide a category name"]
+  },
+  subCategories: {
+    type: [
+      {
+        subCategory: String
+      }
+    ]
   }
 });
 
