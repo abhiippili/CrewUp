@@ -5,7 +5,7 @@ const AppError = require("./../utils/appError");
 
 exports.getAllTasks = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Task.find(), req.query).filter().sort();
-  const tasks = await features.query;
+  const tasks = await features.query.populate("category");
   res.status(200).json({
     status: "success",
     data: {

@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
+const Category = require("./categoryModel");
 
 const taskSchema = new mongoose.Schema({
   title: {
@@ -7,9 +9,9 @@ const taskSchema = new mongoose.Schema({
     trim: true
   },
   category: {
-    type: String,
-    required: [true, "Please provide a category"],
-    trim: true
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+    required: [true, "Please provide a category"]
   },
   subCategory: {
     type: String,
