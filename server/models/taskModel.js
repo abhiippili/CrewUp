@@ -11,21 +11,25 @@ const taskSchema = new mongoose.Schema({
     required: [true, "Please provide a category"],
     trim: true
   },
+  subCategory: {
+    type: String,
+    trim: true
+  },
   description: {
     type: String
   },
-  workAddress: {
+  address: {
     type: String,
     required: [true, "Please provide a valid work address"]
   },
-  workCity: {
+  city: {
     type: String,
     required: [true, "Please provide a valid work city"],
     trim: true
   },
-  wage: {
+  salary: {
     type: Number,
-    required: [true, "Please provide a wage"],
+    required: [true, "Please provide a salary or wage"],
     trim: true
   },
   phoneNumber: {

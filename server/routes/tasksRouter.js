@@ -8,7 +8,7 @@ router
   .route("/")
   .get(tasksController.getAllTasks)
   .get(tasksController.getTask)
-  .post(authController.protect, tasksController.createTask);
+  .post(tasksController.createTask);
 
 router
   .route("/:id")
