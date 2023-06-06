@@ -9,9 +9,18 @@ const taskSchema = new mongoose.Schema({
     trim: true
   },
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    required: [true, "Please provide a category"]
+    type: String,
+    // ref: "Category",
+    required: [true, "Please provide a category"],
+    validate: {
+      validator: async function (category) {
+        const categoryFound = await Category.findOne({
+          categoryName: category
+        });
+        return categoryFound;
+      },
+      message: "Category Not Found in Db"
+    }
   },
   subCategory: {
     type: String,
