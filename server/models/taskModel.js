@@ -15,7 +15,7 @@ const taskSchema = new mongoose.Schema({
     validate: {
       validator: async function (category) {
         const categoryFound = await Category.findOne({
-          categoryName: category
+          category
         });
         return categoryFound;
       },

@@ -10,7 +10,7 @@ router
   .get(tasksController.getTask)
   .post(
     authController.protect,
-    authController.restrictTo("admin"),
+    authController.restrictTo("admin", "user"),
     tasksController.createTask
   );
 
