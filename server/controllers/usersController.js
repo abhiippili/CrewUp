@@ -27,8 +27,18 @@ exports.getUser = catchAsync(async (req, res, next) => {
 });
 
 exports.createUser = catchAsync(async (req, res, next) => {
-  console.log(req.body);
-  const newUser = await User.create(req.body);
+  const newUser = await User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword,
+    phoneNumber: req.body.phoneNumber,
+    dateOfBirth: req.body.dateOfBirth,
+    gender: req.body.gender,
+    address: req.body.address,
+    city: req.body.city,
+    changedPasswordTime: req.body.changedPasswordTime
+  });
   res.status(201).json({
     status: "success",
     data: {
