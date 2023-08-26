@@ -12,6 +12,7 @@ const signToken = (id) => {
 
 //sign up - register + send out token
 exports.signup = catchAsync(async (req, res, next) => {
+  //can also check if the user is already existent
   const newUser = await User.create({
     username: req.body.username,
     email: req.body.email,
