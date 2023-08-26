@@ -13,8 +13,8 @@ const CategoryCard = ({ name, src }) => {
       }}
       onClick={() => navigate("/tasks")}
     >
-      <CardMedia image={src} component="img" height="115" />
-      <CardContent>
+      <CardMedia image={src} component="img" height="120" />
+      <CardContent sx={{ height: "50px" }}>
         <Typography sx={{ textAlign: "center" }}>{name}</Typography>
       </CardContent>
     </Card>

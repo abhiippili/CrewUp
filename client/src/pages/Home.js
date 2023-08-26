@@ -38,8 +38,8 @@ const Home = () => {
         textColor="black"
         TabIndicatorProps={{ style: { height: 3 } }}
       >
-        <StyledTab label="Tasks Around Me (For Workers)" />
-        <StyledTab label="Portfolios Around Me (For Users)" />
+        <StyledTab label="Tasks Around Me" />
+        <StyledTab label="Portfolios Around Me" />
       </StyledTabs>
       {tabComponents[activeTab]}
     </>

@@ -10,7 +10,6 @@ const taskSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    // ref: "Category",
     required: [true, "Please provide a category"],
     validate: {
       validator: async function (category) {

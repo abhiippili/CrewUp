@@ -166,7 +166,7 @@ const SignIn = () => {
         Or
       </AlternateText>
       <AlternateText sx={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-        Look for <b>Tasks</b> around you as a <b>Guest Worker</b>
+        Look for <b>Tasks</b> and <b>Portfolios</b> as a <b>Guest User</b>
       </AlternateText>
     </div>
   );

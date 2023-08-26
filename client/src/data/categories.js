@@ -1,26 +1,26 @@
 export const task_categories = [
-  { id: 1, name: "Construction", src: "/categories/contractor.jpg" },
+  { id: 1, name: "Construction", src: "/categories/construction.jpg" },
   {
     id: 2,
     name: "Repair and Maintenance",
-    src: "./categories/construction.jpeg"
+    src: "./categories/repair.jpg"
   },
-  { id: 3, name: "Taxi and Driving", src: "./categories/painter.jpg" },
-  { id: 4, name: "Delivery", src: "./categories/carpenter.jpeg" },
-  { id: 5, name: "Care Taking", src: "./categories/ceiling.jpg" },
-  { id: 6, name: "Cooking", src: "./categories/plumber.jpeg" },
-  { id: 7, name: "Tutoring", src: "./categories/repair.jpg" },
+  { id: 3, name: "Taxi and Driving", src: "./categories/taxi.jpg" },
+  { id: 4, name: "Delivery", src: "./categories/delivery.jpg" },
+  { id: 5, name: "Care Taking", src: "./categories/care_taking.jpg" },
+  { id: 6, name: "Cooking", src: "./categories/cooking.jpg" },
+  { id: 7, name: "Tutoring", src: "./categories/tutoring.jpg" },
   {
     id: 8,
     name: "Photography and Videography",
-    src: "./categories/movers.jpg"
+    src: "./categories/photography.jpg"
   },
   {
     id: 9,
     name: "House Keeping and Gardening",
-    src: "./categories/electrician.jpeg"
+    src: "./categories/yardworker.jpeg"
   },
-  { id: 10, name: "Help Moving", src: "./categories/yardworker.jpeg" }
+  { id: 10, name: "movers", src: "./categories/yardworker.jpeg" }
 ];
 
 export const portfolio_categories = [
