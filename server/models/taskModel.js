@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 const Category = require("./categoryModel");
+const Location = require("./locationModel");
 
 const taskSchema = new mongoose.Schema({
   title: {
@@ -11,6 +12,7 @@ const taskSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, "Please provide a category"],
+    trim: true,
     validate: {
       validator: async function (category) {
         const categoryFound = await Category.findOne({
@@ -18,7 +20,7 @@ const taskSchema = new mongoose.Schema({
         });
         return categoryFound;
       },
-      message: "Category Not Found in Db"
+      message: "Category Not Found in Database"
     }
   },
   subCategory: {
@@ -35,7 +37,16 @@ const taskSchema = new mongoose.Schema({
   city: {
     type: String,
     required: [true, "Please provide a valid work city"],
-    trim: true
+    trim: true,
+    validate: {
+      validator: async function (city) {
+        const cityFound = await Location.findOne({
+          location: city
+        });
+        return cityFound;
+      },
+      message: "City or Location Not Found in Database"
+    }
   },
   salary: {
     type: Number,

@@ -1,9 +1,9 @@
 [
   { "category": "Construction" },
   {
-    "category": "Repair And Maintenance",
+    "category": "Repair and Maintenance",
     "subCategories": [
-      { "subCategory": "Electrical" },
+      { "subCategory": "Electrical Repairs" },
       { "subCategory": "Painting" },
       { "subCategory": "Carpentry" },
       { "subCategory": "Plumbing" },

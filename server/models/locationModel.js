@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const locationSchema = new mongoose.Schema({
-  locationName: {
+  location: {
     type: String,
     required: [true, "Please provide a location"]
   }

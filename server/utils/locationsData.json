@@ -1,7 +1,7 @@
 [
-  { "locationName": "Hyderabad" },
-  { "locationName": "Rajahmundry" },
-  { "locationName": "Bhimavaram" },
-  { "locationName": "Vijayawada" },
-  { "locationName": "Visakhapatnam" }
+  { "location": "Hyderabad" },
+  { "location": "Rajahmundry" },
+  { "location": "Bhimavaram" },
+  { "location": "Vijayawada" },
+  { "location": "Visakhapatnam" }
 ]
