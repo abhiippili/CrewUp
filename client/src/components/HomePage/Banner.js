@@ -25,8 +25,8 @@ const TextBox = styled(Box)({
 const MainText = styled(Typography)({
   fontFamily: "Poppins",
   fontWeight: 600,
-  textShadow: "1px 2px 2px #000000",
-  color: "#FFC72C"
+  textShadow: "0px 0px 75px #FDF6E3",
+  color: "#FDF6E3"
 });
 
 const SubText = styled(Typography)({
@@ -37,9 +37,9 @@ const SubText = styled(Typography)({
 });
 
 const ActionButton = styled(Button)({
-  border: "1px solid #FFC72C",
+  border: "1px solid #FDF6E3",
   marginRight: "1rem",
-  color: "#FFC72C",
+  color: "#FDF6E3",
   fontFamily: "inherit"
 });
 
@@ -52,7 +52,10 @@ const Banner = () => {
         <TextBox>
           <MainText variant="h3">Crew Up!</MainText>
           <SubText>
-            That one market place for contractors and daily wage workers
+            An All-Inclusive Hub for{" "}
+            <span style={{ color: "#FFC72C" }}>Connecting</span>,{" "}
+            <span style={{ color: "#FFC72C" }}>Working</span>, and Exploring{" "}
+            <span style={{ color: "#FFC72C" }}>Quick Gigs</span>.
           </SubText>
         </TextBox>
         <Box>

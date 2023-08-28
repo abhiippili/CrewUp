@@ -1,6 +1,5 @@
 import { Box, Container, Paper, styled, Typography } from "@mui/material";
 import React from "react";
-import { useQuery } from "react-query";
 import { getAllTasks } from "./../../api/tasksApi";
 
 const TasksContainer = styled(Box)({
@@ -20,16 +19,9 @@ const InnerText = styled(Typography)({
 });
 
 const TasksList = () => {
-  const { data: tasksData, isLoading: loadingTasks } = useQuery(
-    "queryTasks",
-    getAllTasks
-  );
-
-  console.log(tasksData);
-  const tasksList = tasksData.tasks;
   return (
     <TasksContainer>
-      {tasksList.map((task) => {
+      {/* {tasksList.map((task) => {
         return (
           <Task>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -65,7 +57,7 @@ const TasksList = () => {
             </Box>
           </Task>
         );
-      })}
+      })} */}
     </TasksContainer>
   );
 };

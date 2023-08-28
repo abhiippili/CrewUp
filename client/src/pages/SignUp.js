@@ -25,7 +25,6 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 import { signUp } from "./../api/usersApi";
-import { useMutation } from "react-query";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -92,11 +91,6 @@ const SignUp = () => {
     confirmPassword: ""
   });
 
-  const mutation = useMutation((paramObj) => signUp(paramObj), {
-    onSuccess(data) {},
-    onError(err) {}
-  });
-
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -119,10 +113,6 @@ const SignUp = () => {
   const [next, setNext] = useState(false);
 
   const handleFormSubmit = (e) => {
-    if (next) {
-      mutation.mutate(user);
-      return;
-    }
     setNext((next) => !next);
     e.preventDefault();
   };
