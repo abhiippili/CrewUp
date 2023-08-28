@@ -24,7 +24,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
-import { signUp } from "./../api/usersApi";
+import { signUp } from "../api/authApi";
+import { useMutation } from "@tanstack/react-query";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -105,22 +106,47 @@ const SignUp = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setUser({ ...user, [name]: value });
-    console.log(user);
   };
 
   const [next, setNext] = useState(false);
 
+  const [mutateMessage, setMutateMessage] = useState("");
+
+  const signUpMutate = useMutation({
+    mutationFn: (user) => signUp(user),
+    onSuccess: (data) => {
+      console.log(data);
+      setMutateMessage("Sign Up Successfull");
+      navigate("/profile");
+    },
+    onError: (err) => {
+      setMutateMessage("Error signing up : ");
+      console.log(err);
+    }
+  });
+
   const handleFormSubmit = (e) => {
-    setNext((next) => !next);
+    if (!next) {
+      setNext((next) => !next);
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
+    signUpMutate.mutate(user);
   };
+
+  // if (signUpMutate.isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
+      <div style={{ display: "flex", margin: "0.5rem auto" }}>
+        {mutateMessage}
+      </div>
       <StyledPaper elevation={8}>
-        <Stack component="form" onSubmit={handleFormSubmit} method="post">
+        <Stack component="form" onSubmit={handleFormSubmit}>
           <FlexBox sx={{ margin: "1rem auto" }}>
             <AddCircleIcon sx={{ color: "#082567" }} fontSize="medium" />
             <Typography variant="h7" fontFamily="inherit" fontWeight={600}>
@@ -228,15 +254,15 @@ const SignUp = () => {
                 <TextField
                   sx={{ marginLeft: "0.5rem" }}
                   label="Phone Number"
-                  name="phonenumber"
+                  name="phoneNumber"
                   fullWidth
                   type="text"
                   required
                   placeholder="Enter your +91 Phone Number"
                   variant="standard"
                   color="secondary"
-                  inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                  value={user.phonenumber}
+                  inputProps={{ pattern: "[0-9]*" }}
+                  value={user.phoneNumber}
                   onChange={handleInputChange}
                 />
               </FlexBox>
