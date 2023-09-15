@@ -2,6 +2,32 @@ const AppError = require("../utils/appError");
 const User = require("./../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
 
+exports.updateProfile = catchAsync(async (req, res, next) => {
+  if (req.body.password || req.body.passwordConfirm) {
+    return next(new AppError("You can not update the password", 400));
+  }
+  const body = {
+    username: req.body.username,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    dateOfBirth: req.body.dateOfBirth,
+    gender: req.body.gender,
+    address: req.body.address,
+    city: req.body.city
+  };
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, body, {
+    new: true,
+    runValidators: true
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updatedUser
+    }
+  });
+});
+
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
   res.status(200).json({

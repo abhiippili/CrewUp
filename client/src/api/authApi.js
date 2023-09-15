@@ -8,3 +8,8 @@ export const signUp = async (body) => {
   const response = await authApi.post("/signup", body);
   return response.data;
 };
+
+export const signin = async (body) => {
+  const response = await authApi.post("/signin", body);
+  return response.data;
+};

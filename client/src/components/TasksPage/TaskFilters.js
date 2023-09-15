@@ -55,7 +55,7 @@ const TaskFilter = () => {
 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-      <StyledPaper elevation={6}>
+      <StyledPaper elevation={4}>
         {/* location */}
         <TextField
           select

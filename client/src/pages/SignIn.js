@@ -3,7 +3,6 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  MenuItem,
   Paper,
   styled,
   TextField,
@@ -12,17 +11,14 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import MaleIcon from "@mui/icons-material/Male";
-import PlaceIcon from "@mui/icons-material/Place";
 
 import PasswordIcon from "@mui/icons-material/Password";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
+
+import { signin } from "./../api/authApi";
+import { useMutation } from "@tanstack/react-query";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -72,7 +68,15 @@ const SignIn = () => {
     password: ""
   });
 
+  const [mutateMessage, setMutateMessage] = useState("");
+
   const navigate = useNavigate();
+
+  const signInMutate = useMutation({
+    mutationFn: (user) => signin(user),
+    onSuccess: (data) => setMutateMessage("Login Successful"),
+    onError: (err) => setMutateMessage("Login Failed")
+  });
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
@@ -87,11 +91,15 @@ const SignIn = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    return navigate("/");
+    signInMutate.mutate(user);
+    return;
   };
 
   return (
     <div>
+      <div style={{ display: "flex", margin: "0.5rem auto" }}>
+        {mutateMessage}
+      </div>
       <StyledPaper elevation={8}>
         <Stack component="form" onSubmit={handleFormSubmit} method="post">
           <FlexBox sx={{ margin: "1rem auto" }}>
