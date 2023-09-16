@@ -4,15 +4,9 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const AppError = require("../utils/appError");
 
-const signToken = (id) => {
-  const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+const signToken = (id, res) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN
-  });
-  res.cookie("jwt", token, {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true
   });
 };
 
@@ -32,6 +26,13 @@ exports.signup = catchAsync(async (req, res, next) => {
     changedPasswordTime: req.body.changedPasswordTime
   });
   const token = signToken(newUser._id);
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true
+  });
+
   res.status(201).json({
     status: "success",
     token,
@@ -53,6 +54,13 @@ exports.signin = catchAsync(async (req, res, next) => {
     return next(new AppError("Incorrect email or password", 401));
   }
   const token = signToken(user._id);
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true
+  });
+
   res.status(200).json({
     status: "success",
     token,

@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/myprofile" element={<Profile />}></Route>
           <Route path="/mycontracts" element={<MyContracts />}></Route>
           <Route path="/myportfolio" element={<MyPortfolio />}></Route>
           <Route path="/posttask" element={<PostTask />}></Route>

@@ -118,7 +118,7 @@ const SignUp = () => {
     onSuccess: (data) => {
       console.log(data);
       setMutateMessage("Sign Up Successfull");
-      navigate("/profile");
+      navigate("/myprofile");
     },
     onError: (err) => {
       setMutateMessage("Error signing up : ");
