@@ -6,6 +6,17 @@ const router = express.Router();
 
 router.post("/signup", authController.signup);
 router.post("/signin", authController.signin);
+router.get(
+  "/myprofile",
+  authController.protect,
+  usersController.getProfile,
+  usersController.getUser
+);
+router.patch(
+  "/updateProfile",
+  authController.protect,
+  usersController.updateProfile
+);
 
 router
   .route("/")

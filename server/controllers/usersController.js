@@ -2,6 +2,11 @@ const AppError = require("../utils/appError");
 const User = require("./../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
 
+exports.getProfile = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
+
 exports.updateProfile = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) {
     return next(new AppError("You can not update the password", 400));
@@ -15,7 +20,7 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
     address: req.body.address,
     city: req.body.city
   };
-  const updatedUser = await User.findByIdAndUpdate(req.user._id, body, {
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, body, {
     new: true,
     runValidators: true
   });
@@ -39,7 +44,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 exports.getUser = catchAsync(async (req, res, next) => {
-  console.log(req.params);
+  console.log(req.params.id);
   const user = await User.findById(req.params.id);
   if (!user) {
     return next(new AppError("No task found with given id", 404));
