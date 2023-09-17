@@ -11,5 +11,5 @@ export const signUp = async (body) => {
 
 export const signin = async (body) => {
   const response = await authApi.post("/signin", body);
-  return response.data;
+  return response;
 };

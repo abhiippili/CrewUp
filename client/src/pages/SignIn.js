@@ -74,7 +74,12 @@ const SignIn = () => {
 
   const signInMutate = useMutation({
     mutationFn: (user) => signin(user),
-    onSuccess: (data) => setMutateMessage("Login Successful"),
+    onSuccess: (data) => {
+      console.log(data);
+      setMutateMessage("Login Successful");
+      // const cookies = data.response.headers["set-cookie"];
+      // console.log(cookies);
+    },
     onError: (err) => setMutateMessage("Login Failed")
   });
 

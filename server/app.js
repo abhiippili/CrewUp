@@ -10,7 +10,7 @@ const cors = require("cors");
 
 const app = new express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 //route middlewares
 app.use("/api/users", usersRouter);

@@ -53,6 +53,7 @@ exports.signin = catchAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect email or password", 401));
   }
+  res.cookie("test", "hello");
   const token = signToken(user._id);
   res.cookie("jwt", token, {
     expires: new Date(
