@@ -7,9 +7,11 @@ const globalErrorHandler = require("./controllers/errorController");
 
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const app = new express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({ credentials: true }));
 
 //route middlewares

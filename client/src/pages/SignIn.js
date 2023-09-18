@@ -77,8 +77,6 @@ const SignIn = () => {
     onSuccess: (data) => {
       console.log(data);
       setMutateMessage("Login Successful");
-      // const cookies = data.response.headers["set-cookie"];
-      // console.log(cookies);
     },
     onError: (err) => setMutateMessage("Login Failed")
   });

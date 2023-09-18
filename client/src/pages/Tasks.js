@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useEffect } from "react";
+import React from "react";
 import TaskFilters from "./../components/TasksPage/TaskFilters";
 import TasksList from "./../components/TasksPage/TasksList";
 
