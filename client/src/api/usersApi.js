@@ -6,7 +6,9 @@ const usersApi = axios.create({
 
 export const getMyProfile = async () => {
   const response = await usersApi.get("/myprofile", {
-    withCredentials: true,
-    credentials: "include"
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token")
+    }
   });
+  return response.data;
 };

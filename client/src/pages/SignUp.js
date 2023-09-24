@@ -118,6 +118,7 @@ const SignUp = () => {
     onSuccess: (data) => {
       console.log(data);
       setMutateMessage("Sign Up Successfull");
+      localStorage.setItem("token", data.token);
       navigate("/myprofile");
     },
     onError: (err) => {

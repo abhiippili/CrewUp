@@ -11,10 +11,11 @@ const Profile = () => {
   if (isLoading) {
     return <div>loading...</div>;
   }
-  if (isLoading) {
+  if (isError) {
     return <div>Error</div>;
   }
-  return <div>{data}</div>;
+
+  return <div>data :</div>;
 };
 
 export default Profile;

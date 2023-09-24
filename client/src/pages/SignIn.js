@@ -77,6 +77,7 @@ const SignIn = () => {
     onSuccess: (data) => {
       console.log(data);
       setMutateMessage("Login Successful");
+      localStorage.setItem("token", data.token);
     },
     onError: (err) => setMutateMessage("Login Failed")
   });

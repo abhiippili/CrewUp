@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const app = new express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors());
 
 //route middlewares
 app.use("/api/users", usersRouter);
