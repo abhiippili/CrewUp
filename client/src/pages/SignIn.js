@@ -8,7 +8,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 
@@ -19,6 +19,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { signin } from "./../api/authApi";
 import { useMutation } from "@tanstack/react-query";
+import { AuthContext } from "../contexts/AuthContext";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -63,6 +64,8 @@ const AlternateText = styled(Typography)({
 });
 
 const SignIn = () => {
+  const { setUser: setContextUser } = useContext(AuthContext);
+
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -78,6 +81,7 @@ const SignIn = () => {
       console.log(data);
       setMutateMessage("Login Successful");
       localStorage.setItem("token", data.token);
+      setContextUser(user);
     },
     onError: (err) => setMutateMessage("Login Failed")
   });

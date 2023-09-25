@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import EngineeringIcon from "@mui/icons-material/Engineering";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
 import {
   Box,
   Menu,
@@ -88,11 +88,11 @@ const Profile = ({ user }) => {
   const signedOptions = [
     <FlexBox onClick={() => navigate("/contracts")}>
       <ViewListIcon fontSize="small" sx={{ marginRight: "10px" }} />
-      My Contracts
+      My Tasks
     </FlexBox>,
     <FlexBox onClick={() => navigate("/portfolio")}>
-      <EngineeringIcon fontSize="small" sx={{ marginRight: "10px" }} />
-      Worker Portfolio
+      <ContactPageIcon fontSize="small" sx={{ marginRight: "10px" }} />
+      My Portfolio
     </FlexBox>,
     <FlexBox onClick={() => navigate("/myprofile")}>
       <PersonIcon fontSize="small" sx={{ marginRight: "10px" }} />
