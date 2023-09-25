@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppBar,
-  backdropClasses,
   Box,
   Container,
   IconButton,
-  mobileStepperClasses,
   styled,
   Toolbar,
   Typography,
@@ -18,10 +16,7 @@ import InterestButton from "./InterestButton";
 import Profile from "./Profile";
 import { theme } from "./../../theme";
 import { useNavigate } from "react-router-dom";
-
-//3 : 16 : 8 - above md
-//3 : 4 : 10 - above sm and below md
-//1 : 2 : 4 -below sm
+import { AuthContext } from "./../../contexts/AuthContext";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -71,7 +66,7 @@ function NavBar() {
   const smMdMatches = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const smDownMatches = !smUpMatches;
 
-  const [user, setUser] = useState("");
+  const { user, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

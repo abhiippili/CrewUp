@@ -94,7 +94,7 @@ const Profile = ({ user }) => {
       <EngineeringIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Worker Portfolio
     </FlexBox>,
-    <FlexBox onClick={() => navigate("/profile")}>
+    <FlexBox onClick={() => navigate("/myprofile")}>
       <PersonIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Profile
     </FlexBox>,
@@ -115,7 +115,7 @@ const Profile = ({ user }) => {
             fontWeight: 600
           }}
         >
-          {user ? "Hello " + user : "SignIn"}
+          {user ? "Hello " + user.username : "SignIn"}
         </Typography>
       </ProfileBox>
       <Menu
