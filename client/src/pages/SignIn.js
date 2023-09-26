@@ -8,7 +8,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 
@@ -64,7 +64,24 @@ const AlternateText = styled(Typography)({
 });
 
 const SignIn = () => {
-  const { setUser: setContextUser } = useContext(AuthContext);
+  const {
+    user: contextUser,
+    setUser: setContextUser,
+    isLogged,
+    setIsLogged
+  } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkLogged();
+  }, []);
+
+  const checkLogged = () => {
+    if (localStorage.getItem("token")) {
+      setIsLogged(true);
+      navigate("/myprofile");
+    }
+  };
 
   const [user, setUser] = useState({
     email: "",
@@ -73,15 +90,13 @@ const SignIn = () => {
 
   const [mutateMessage, setMutateMessage] = useState("");
 
-  const navigate = useNavigate();
-
   const signInMutate = useMutation({
     mutationFn: (user) => signin(user),
     onSuccess: (data) => {
-      console.log(data);
       setMutateMessage("Login Successful");
       localStorage.setItem("token", data.token);
       setContextUser(user);
+      navigate("/myprofile");
     },
     onError: (err) => setMutateMessage("Login Failed")
   });
@@ -94,7 +109,6 @@ const SignIn = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
   };
 
   const handleFormSubmit = (e) => {

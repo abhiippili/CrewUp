@@ -28,6 +28,7 @@ const Profile = () => {
     return <div>Error</div>;
   }
   const user = data.data.user;
+  console.log(user);
   setUser(user);
   return (
     <div>

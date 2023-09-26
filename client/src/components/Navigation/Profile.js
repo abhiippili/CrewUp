@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import {
@@ -16,6 +16,7 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { theme } from "../../theme";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const ProfileBox = styled(Box)({
   display: "flex",
@@ -33,15 +34,25 @@ const FlexBox = styled(Box)({
 const Profile = ({ user }) => {
   const navigate = useNavigate();
 
+  const { user: contextUser, setUser: setContextUser } =
+    useContext(AuthContext);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleMouseEnter = (e) => {
     setAnchorEl(e.currentTarget);
-    // console.log(e);
   };
   const handleClose = (e) => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = (e) => {
+    if (localStorage.getItem("token")) {
+      localStorage.removeItem("token");
+      setContextUser(null);
+      navigate("/signin");
+    }
   };
 
   const mdUpMatches = useMediaQuery(theme.breakpoints.up("md"));
@@ -98,7 +109,7 @@ const Profile = ({ user }) => {
       <PersonIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Profile
     </FlexBox>,
-    <FlexBox>
+    <FlexBox onClick={handleLogout}>
       <LogoutIcon fontSize="small" sx={{ marginRight: "10px" }} />
       Logout
     </FlexBox>
