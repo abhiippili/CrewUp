@@ -31,11 +31,10 @@ const FlexBox = styled(Box)({
   alignItems: "center"
 });
 
-const Profile = ({ user }) => {
+const Profile = () => {
   const navigate = useNavigate();
 
-  const { user: contextUser, setUser: setContextUser } =
-    useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -50,7 +49,7 @@ const Profile = ({ user }) => {
   const handleLogout = (e) => {
     if (localStorage.getItem("token")) {
       localStorage.removeItem("token");
-      setContextUser(null);
+      setUser(null);
       navigate("/signin");
     }
   };

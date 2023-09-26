@@ -64,12 +64,8 @@ const AlternateText = styled(Typography)({
 });
 
 const SignIn = () => {
-  const {
-    user: contextUser,
-    setUser: setContextUser,
-    isLogged,
-    setIsLogged
-  } = useContext(AuthContext);
+  const { user: contextUser, setUser: setContextUser } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,7 +74,6 @@ const SignIn = () => {
 
   const checkLogged = () => {
     if (localStorage.getItem("token")) {
-      setIsLogged(true);
       navigate("/myprofile");
     }
   };

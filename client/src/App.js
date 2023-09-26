@@ -17,30 +17,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getMyProfile } from "./api/usersApi";
 
 function App() {
-  const [tokenExists, setTokenExists] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setTokenExists(true);
-    }
-  }, []);
   const [user, setUser] = useState(null);
-  const [isLogged, setIsLogged] = useState(false);
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["user"],
-    queryFn: getMyProfile,
-    enabled: tokenExists
-  });
-  //if loading and if error, do not pass the context.
-  if (!isLoading && !isError) {
-    const userObj = data.data.user;
-    // setUser({ username: "abhishek" });
-    // setIsLogged(true);
-  }
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
+      <AuthContext.Provider value={{ user, setUser }}>
         <Router>
           <NavBar />
           <Routes>

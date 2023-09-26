@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -17,6 +17,8 @@ import Profile from "./Profile";
 import { theme } from "./../../theme";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../contexts/AuthContext";
+import { getMyProfile } from "../../api/usersApi";
+import { useQuery } from "@tanstack/react-query";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -68,6 +70,24 @@ function NavBar() {
 
   const { user, setUser } = useContext(AuthContext);
 
+  const [tokenExists, setTokenExists] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setTokenExists(true);
+    }
+  }, []);
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["user"],
+    queryFn: getMyProfile,
+    enabled: tokenExists
+  });
+  //if loading and if error, do not pass the context.
+  if (!isLoading && !isError) {
+    const userObj = data.data.user;
+    setUser(userObj);
+  }
+
   const navigate = useNavigate();
 
   return (
@@ -98,7 +118,7 @@ function NavBar() {
             {/* box3 */}
             <AddAndProfile>
               <InterestButton />
-              {smUpMatches && <Profile user={user} />}
+              {smUpMatches && <Profile />}
             </AddAndProfile>
           </StyledToolbar>
         )}
