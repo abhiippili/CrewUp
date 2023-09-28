@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
       message: "The passwords do not match"
     }
   },
+  picture: {
+    url: String,
+    public_id: String
+  },
   //just to illustrate roles as well
   role: {
     type: String,

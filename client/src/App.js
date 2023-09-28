@@ -15,6 +15,8 @@ import Portfolios from "./pages/Portfolios";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMyProfile } from "./api/usersApi";
+import MyTasks from "./pages/MyTasks";
+import Settings from "./pages/Settings";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,8 +31,9 @@ function App() {
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/myprofile" element={<Profile />}></Route>
-            <Route path="/mycontracts" element={<MyContracts />}></Route>
+            <Route path="/mytasks" element={<MyTasks />}></Route>
             <Route path="/myportfolio" element={<MyPortfolio />}></Route>
+            <Route path="/myprofile/edit" element={<Settings />}></Route>
             <Route path="/posttask" element={<PostTask />}></Route>
             <Route path="/tasks" element={<Tasks />}></Route>
             <Route path="/portfolios" element={<Portfolios />}></Route>

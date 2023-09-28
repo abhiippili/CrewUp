@@ -44,7 +44,6 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 exports.getUser = catchAsync(async (req, res, next) => {
-  console.log(req.params.id);
   const user = await User.findById(req.params.id);
   if (!user) {
     return next(new AppError("No task found with given id", 404));

@@ -116,7 +116,6 @@ const SignUp = () => {
   const signUpMutate = useMutation({
     mutationFn: (user) => signUp(user),
     onSuccess: (data) => {
-      console.log(data);
       setMutateMessage("Sign Up Successfull");
       localStorage.setItem("token", data.token);
       navigate("/myprofile");
