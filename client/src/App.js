@@ -7,7 +7,6 @@ import NavBar from "./components/Navigation/NavBar";
 import PageNotFound from "./pages/PageNotFound";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
-import MyContracts from "./pages/MyContracts";
 import MyPortfolio from "./pages/MyPortfolio";
 import PostTask from "./pages/PostTask";
 import Tasks from "./pages/Tasks";
@@ -31,6 +30,7 @@ function App() {
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/myprofile" element={<Profile />}></Route>
+            <Route path="/posttask" element={<PostTask />}></Route>
             <Route path="/mytasks" element={<MyTasks />}></Route>
             <Route path="/myportfolio" element={<MyPortfolio />}></Route>
             <Route path="/myprofile/edit" element={<Settings />}></Route>

@@ -96,11 +96,11 @@ const Profile = () => {
   ];
   // const signedOptions = ["My Contracts", "Profile", "Logout"];
   const signedOptions = [
-    <FlexBox onClick={() => navigate("/contracts")}>
+    <FlexBox onClick={() => navigate("/mytasks")}>
       <ViewListIcon fontSize="small" sx={{ marginRight: "10px" }} />
       My Tasks
     </FlexBox>,
-    <FlexBox onClick={() => navigate("/portfolio")}>
+    <FlexBox onClick={() => navigate("/myportfolio")}>
       <ContactPageIcon fontSize="small" sx={{ marginRight: "10px" }} />
       My Portfolio
     </FlexBox>,
