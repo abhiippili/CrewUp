@@ -72,7 +72,6 @@ exports.deleteTask = catchAsync(async (req, res, next) => {
 
 exports.createTask = catchAsync(async (req, res, next) => {
   const newTask = await Task.create(req.body);
-
   res.status(201).json({
     status: "success",
     data: {

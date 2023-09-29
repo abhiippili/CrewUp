@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const Task = require("./taskModel");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -61,6 +62,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide city name"]
   },
+  tasks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Task
+    }
+  ],
   changedPasswordTime: Date
 });
 
