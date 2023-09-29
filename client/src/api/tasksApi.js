@@ -8,3 +8,12 @@ export const getAllTasks = async () => {
   const response = await tasksApi.get("/");
   return response.data;
 };
+
+export const postTask = async () => {
+  const response = await tasksApi.post("/", {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token")
+    }
+  });
+  return response.data;
+};
