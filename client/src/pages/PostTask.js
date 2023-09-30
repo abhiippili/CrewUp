@@ -43,6 +43,15 @@ const ButtonBox = styled(Box)({
 });
 
 const PostTask = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
+    }
+  }, []);
+
   const [taskData, setTaskData] = useState({
     title: "",
     category: "",
@@ -54,17 +63,16 @@ const PostTask = () => {
     phoneNumber: ""
   });
 
-  const navigate = useNavigate();
   const [subCategories, setSubCategories] = useState([]);
   const [mutateMessage, setMutateMessage] = useState("");
 
   const postTaskMutate = useMutation({
     mutationFn: (task) => postTask(task),
     onSuccess: (data) => {
-      setMutateMessage();
+      setMutateMessage(data.status);
     },
     onError: (err) => {
-      setMutateMessage();
+      setMutateMessage("error " + err.response.data.message);
     }
   });
   const {
@@ -117,8 +125,9 @@ const PostTask = () => {
     }
   };
 
-  const handleSubmit = () => {
-    navigate("/");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postTaskMutate.mutate(taskData);
   };
 
   return (

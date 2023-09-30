@@ -9,10 +9,10 @@ export const getAllTasks = async () => {
   return response.data;
 };
 
-export const postTask = async () => {
-  const response = await tasksApi.post("/", {
+export const postTask = async (body) => {
+  const response = await tasksApi.post("/", body, {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token")
+      Authorization: "Bearer" + localStorage.getItem("token")
     }
   });
   return response.data;

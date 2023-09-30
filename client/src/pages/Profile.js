@@ -3,12 +3,9 @@ import { useContext, useEffect } from "react";
 import { getMyProfile } from "../api/usersApi";
 import { Box, Grid, Paper, styled, TextField, Typography } from "@mui/material";
 import { AuthContext } from "./../contexts/AuthContext";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
+
 import { useNavigate } from "react-router-dom";
+import { ProfileSideBox } from "../components/ProfileSideBox";
 
 const StyledPaper = styled(Paper)({
   borderRadius: "1rem",
@@ -35,23 +32,16 @@ const Profile = () => {
   const { user: contextUser, setUser } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!contextUser) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/signin");
     }
-  }, [contextUser]);
+  }, []);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["profile"],
     queryFn: getMyProfile
   });
-
-  const handleLogout = (e) => {
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-      setUser(null);
-      navigate("/signin");
-    }
-  };
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -64,31 +54,10 @@ const Profile = () => {
   return (
     <div>
       <Grid container spacing={5} sx={{ padding: "2rem 3rem" }}>
-        <Grid item xs={3}>
-          <StyledPaper elevation={2}>
-            <SideBox onClick={() => navigate("/myprofile")}>
-              <AccountCircleIcon sx={{ marginRight: "10px" }} />
-              <Box sx={{ textAlign: "center" }}>My Profile</Box>
-            </SideBox>
-            <SideBox onClick={() => navigate("/mytasks")}>
-              <ViewListIcon sx={{ marginRight: "10px" }} />
-              <Box sx={{ textAlign: "center" }}>My Tasks</Box>
-            </SideBox>
-            <SideBox onClick={() => navigate("/myportfolio")}>
-              <ContactPageIcon sx={{ marginRight: "10px" }} />
-              <Typography>My Portfolio</Typography>
-            </SideBox>
-            <SideBox onClick={() => navigate("/settings")}>
-              <SettingsIcon sx={{ marginRight: "10px" }} />
-              <Typography>Settings</Typography>
-            </SideBox>
-            <SideBox onClick={handleLogout}>
-              <LogoutIcon sx={{ marginRight: "10px" }} />
-              <Typography>Logout</Typography>
-            </SideBox>
-          </StyledPaper>
+        <Grid item xs={2}>
+          <ProfileSideBox />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={10}>
           <StyledPaper elevation={3}>
             <Box>
               <TextField>For Image</TextField>

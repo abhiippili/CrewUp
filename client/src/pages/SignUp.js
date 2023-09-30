@@ -9,7 +9,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -26,6 +26,7 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 import { signUp } from "../api/authApi";
 import { useMutation } from "@tanstack/react-query";
+import { AuthContext } from "../contexts/AuthContext";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -80,6 +81,17 @@ const cities = [
 const genders = ["Male", "Female", "Other"];
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { user: contextUser, setUser: setContextUser } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      return navigate("/myprofile");
+    }
+  }, []);
+
   const [user, setUser] = useState({
     email: "",
     username: "",
@@ -91,8 +103,6 @@ const SignUp = () => {
     password: "",
     confirmPassword: ""
   });
-
-  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
@@ -118,6 +128,7 @@ const SignUp = () => {
     onSuccess: (data) => {
       setMutateMessage("Sign Up Successfull");
       localStorage.setItem("token", data.token);
+      setContextUser(user);
       navigate("/myprofile");
     },
     onError: (err) => {
@@ -135,10 +146,6 @@ const SignUp = () => {
     e.preventDefault();
     signUpMutate.mutate(user);
   };
-
-  // if (signUpMutate.isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <div>
