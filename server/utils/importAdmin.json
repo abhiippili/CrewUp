@@ -1,0 +1,12 @@
+{
+  "email": "admin@crewup.com",
+  "username": "admin",
+  "role": "admin",
+  "password": "admin",
+  "confirmPassword": "admin",
+  "phoneNumber": 9999999999,
+  "dateOfBirth": "29-08-2001",
+  "gender": "male",
+  "address": "abcd",
+  "city": "abcd"
+}
