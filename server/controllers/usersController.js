@@ -1,8 +1,14 @@
+const Task = require("../models/taskModel");
 const AppError = require("../utils/appError");
 const User = require("./../models/userModel");
 const catchAsync = require("./../utils/catchAsync");
 
 exports.getProfile = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
+
+exports.deleteProfile = (req, res, next) => {
   req.params.id = req.user.id;
   next();
 };
@@ -79,8 +85,12 @@ exports.createUser = catchAsync(async (req, res, next) => {
 
 exports.deleteUser = catchAsync(async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.id);
+  const userTasks = user.tasks;
   if (!user) {
     return next(new AppError("No user found with given id", 404));
+  }
+  for (const taskId of userTasks) {
+    await Task.findByIdAndDelete(taskId);
   }
   res.status(204).json({
     status: "success",

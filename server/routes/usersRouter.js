@@ -13,10 +13,17 @@ router.get(
   usersController.getProfile,
   usersController.getUser
 );
-router.patch(
+router.put(
   "/updateProfile",
   authController.protect,
   usersController.updateProfile
+);
+
+router.delete(
+  "/deleteProfile",
+  authController.protect,
+  usersController.deleteProfile,
+  usersController.deleteUser
 );
 
 router
@@ -27,6 +34,10 @@ router
 router
   .route("/:id")
   .get(usersController.getUser)
-  .delete(usersController.deleteUser);
+  .delete(
+    authController.protect,
+    authController.restrictTo("admin"),
+    usersController.deleteUser
+  );
 
 module.exports = router;
