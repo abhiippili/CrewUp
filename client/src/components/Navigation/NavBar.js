@@ -19,25 +19,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../contexts/AuthContext";
 import { getMyProfile } from "../../api/usersApi";
 import { useQuery } from "@tanstack/react-query";
+import Logo from "./Logo";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   fontFamily: "inherit"
-});
-
-const Logo = styled(Typography)({
-  color: "black",
-  fontWeight: "600",
-  fontFamily: "Poppins"
-});
-
-const LogoBox = styled(Box)({
-  display: "flex",
-  alignItems: "self-end",
-  flex: 3,
-  [theme.breakpoints.between("sm", "md")]: {
-    flex: 2.75
-  }
 });
 
 const LocAndSearchBox = styled(Box)({
@@ -45,7 +31,6 @@ const LocAndSearchBox = styled(Box)({
   [theme.breakpoints.between("sm", "md")]: {
     flex: 4
   },
-
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around"
@@ -103,12 +88,7 @@ function NavBar() {
           </StyledToolbar>
         ) : (
           <StyledToolbar>
-            {/* box1 */}
-            <LogoBox>
-              <Logo onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
-                Crew Up
-              </Logo>
-            </LogoBox>
+            <Logo />
 
             {/* box2 */}
             <LocAndSearchBox>

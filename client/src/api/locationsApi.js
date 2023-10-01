@@ -8,3 +8,10 @@ export const getLocations = async () => {
   const response = await locationsApi.get("/");
   return response.data;
 };
+
+export const getLocationNearMe = async (latitude, longitude) => {
+  const response = await locationsApi.get(
+    `/nearme?latitude=${latitude}&longitude=${longitude}`
+  );
+  return response.data;
+};

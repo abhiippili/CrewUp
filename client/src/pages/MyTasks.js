@@ -37,6 +37,9 @@ const MyTasks = () => {
         </Grid>
         <Grid item xs={10}>
           <StyledPaper elevation={3}>
+            <Typography>
+              <b>Tasks you created : </b>
+            </Typography>
             {tasks.map((task) => {
               return <TasksContainer task={task} />;
             })}

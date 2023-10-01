@@ -38,7 +38,7 @@ const TasksContainer = ({ task }) => {
           <Typography>
             <b>Category: </b>
           </Typography>
-          <Value>{task.category}</Value>
+          <Value>{task.category.category}</Value>
         </FlexBox>
         <FlexBox>
           <Typography>
@@ -63,7 +63,7 @@ const TasksContainer = ({ task }) => {
         <Typography>
           <b>City:</b>
         </Typography>
-        <Value>{task.city}</Value>
+        <Value>{task.location.location}</Value>
       </FlexBox>
       <FlexBox sx={{ justifyContent: "space-between" }}>
         <FlexBox>
