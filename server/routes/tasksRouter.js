@@ -7,13 +7,13 @@ const router = express.Router();
 router
   .route("/")
   .get(tasksController.getAllTasks)
-  .get(tasksController.getTask)
   .post(
     authController.protect,
     authController.restrictTo("admin", "user"),
     tasksController.createTask
   );
 
+router.get("/mytasks", authController.protect, tasksController.getMyTasks);
 router
   .route("/:id")
   .get(tasksController.getTask)

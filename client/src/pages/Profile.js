@@ -51,6 +51,8 @@ const Profile = () => {
   }
   const user = data.data.user;
   setUser(user);
+
+  //1.fetch the current user, and
   return (
     <div>
       <Grid container spacing={5} sx={{ padding: "2rem 3rem" }}>

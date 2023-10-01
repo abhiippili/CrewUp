@@ -28,17 +28,27 @@ exports.getTask = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getTasks = catchAsync(async (req, res, next) => {
-  const tasks = await Task.findOne({
-    location: req.body.location,
-    category: req.body.category
-  });
-  if (!tasks) {
-    return next(new AppError("No tasks", 404));
-  }
+// exports.getTasks = catchAsync(async (req, res, next) => {
+//   const tasks = await Task.findOne({
+//     location: req.body.location,
+//     category: req.body.category
+//   });
+//   if (!tasks) {
+//     return next(new AppError("No tasks", 404));
+//   }
+//   res.status(200).json({
+//     status: "success",
+//     tasks
+//   });
+// });
+
+exports.getMyTasks = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id).populate("tasks");
   res.status(200).json({
     status: "success",
-    tasks
+    data: {
+      tasks: user.tasks
+    }
   });
 });
 

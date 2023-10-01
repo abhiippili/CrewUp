@@ -22,8 +22,8 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ user, setUser }}>
-        <Router>
+      <Router>
+        <AuthContext.Provider value={{ user, setUser }}>
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -39,8 +39,8 @@ function App() {
             <Route path="/portfolios" element={<Portfolios />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
-        </Router>
-      </AuthContext.Provider>
+        </AuthContext.Provider>
+      </Router>
     </div>
   );
 }

@@ -7,12 +7,11 @@ import {
 } from "@mui/material";
 
 const StyledContainer = styled(Container)({
-  // boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
   boxShadow:
     "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
   borderRadius: "10px",
   padding: "10px",
-  marginBottom: "1rem"
+  margin: "10px 0"
 });
 
 const FlexBox = styled(Box)({

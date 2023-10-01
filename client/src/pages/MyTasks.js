@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Paper, styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getAllTasks } from "../api/tasksApi";
+import { getMyTasks } from "../api/tasksApi";
 import { ProfileSideBox } from "../components/ProfileSideBox";
 import TasksContainer from "../components/TasksContainer";
 
@@ -15,8 +15,8 @@ const StyledPaper = styled(Paper)({
 
 const MyTasks = () => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: getAllTasks
+    queryKey: ["mytasks"],
+    queryFn: getMyTasks
   });
 
   if (isLoading) {
