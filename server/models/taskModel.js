@@ -10,18 +10,9 @@ const taskSchema = new mongoose.Schema({
     trim: true
   },
   category: {
-    type: String,
-    required: [true, "Please provide a category"],
-    trim: true,
-    validate: {
-      validator: async function (category) {
-        const categoryFound = await Category.findOne({
-          category
-        });
-        return categoryFound;
-      },
-      message: "Category Not Found in Database"
-    }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Category,
+    required: [true, "Please provide a category"]
   },
   subCategory: {
     type: String,
@@ -35,19 +26,10 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a valid work address"]
   },
-  city: {
-    type: String,
-    required: [true, "Please provide a valid work city"],
-    trim: true,
-    validate: {
-      validator: async function (city) {
-        const cityFound = await Location.findOne({
-          location: city
-        });
-        return cityFound;
-      },
-      message: "City or Location Not Found in Database"
-    }
+  location: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Location,
+    required: [true, "Please provide a valid work city"]
   },
   salary: {
     type: Number,

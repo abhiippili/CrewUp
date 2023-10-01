@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 
 exports.getAllTasks = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Task.find(), req.query).filter().sort();
-  const tasks = await features.query;
+  const tasks = await features.query.populate("category").populate("location");
   res.status(200).json({
     status: "success",
     data: {
@@ -16,7 +16,9 @@ exports.getAllTasks = catchAsync(async (req, res, next) => {
 });
 
 exports.getTask = catchAsync(async (req, res, next) => {
-  const task = await Task.findById(req.params.id);
+  const task = await Task.findById(req.params.id)
+    .populate("category")
+    .populate("location");
   if (!task) {
     return next(new AppError("No task with that id", 404));
   }
@@ -28,22 +30,11 @@ exports.getTask = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getTasks = catchAsync(async (req, res, next) => {
-//   const tasks = await Task.findOne({
-//     location: req.body.location,
-//     category: req.body.category
-//   });
-//   if (!tasks) {
-//     return next(new AppError("No tasks", 404));
-//   }
-//   res.status(200).json({
-//     status: "success",
-//     tasks
-//   });
-// });
-
 exports.getMyTasks = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user.id).populate("tasks");
+  const user = await User.findById(req.user.id).populate({
+    path: "tasks",
+    populate: [{ path: "category" }, { path: "location" }]
+  });
   res.status(200).json({
     status: "success",
     data: {

@@ -1,7 +1,7 @@
 [
-  { "location": "Hyderabad" },
-  { "location": "Rajahmundry" },
-  { "location": "Bhimavaram" },
-  { "location": "Vijayawada" },
-  { "location": "Visakhapatnam" }
+  { "location": "Hyderabad", "latitude": 17.385044, "longitude": 78.486671 },
+  { "location": "Rajahmundry", "latitude": 17.000538, "longitude": 81.804031 },
+  { "location": "Bhimavaram", "latitude": 16.545151, "longitude": 81.53698 },
+  { "location": "Vijayawada", "latitude": 16.506174, "longitude": 80.648018 },
+  { "location": "Visakhapatnam", "latitude": 17.686815, "longitude": 83.218483 }
 ]
