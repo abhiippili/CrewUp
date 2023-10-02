@@ -1,9 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { theme } from "../../theme";
 import { useQuery } from "@tanstack/react-query";
 import { getLocationNearMe } from "../../api/locationsApi";
+import { LocationContext } from "../../contexts/LocationContext";
 
 const LogoText = styled(Typography)({
   color: "black",
@@ -21,6 +22,8 @@ const LogoBox = styled(Box)({
 });
 
 const Logo = () => {
+  const navigate = useNavigate();
+  const { myLocation, setMyLocation } = useContext(LocationContext);
   const [coordinates, setCoordinates] = useState([]);
   const [getLocation, setGetLocation] = useState(false);
 
@@ -41,7 +44,11 @@ const Logo = () => {
     queryFn: () => getLocationNearMe(coordinates[0], coordinates[1]),
     enabled: getLocation
   });
-  const navigate = useNavigate();
+
+  if (!isLoading && !isError && !myLocation) {
+    const closest = locationData.data.location.location;
+    setMyLocation(closest);
+  }
   return (
     <LogoBox>
       <LogoText onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>

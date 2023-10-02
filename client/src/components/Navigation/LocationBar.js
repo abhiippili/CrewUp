@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import {
   Autocomplete,
@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { theme } from "./../../theme";
 import { useQuery } from "@tanstack/react-query";
+import { LocationContext } from "../../contexts/LocationContext";
 
 const LocationBox = styled(Box)({
   display: "flex",
@@ -24,14 +25,9 @@ const LocationBox = styled(Box)({
 });
 
 const LocationBar = () => {
-  const [location, setLocation] = useState("");
+  const { myLocation, setMyLocation } = useContext(LocationContext);
 
   const lgDownMatch = useMediaQuery(theme.breakpoints.down("lg"));
-
-  // if (!isLoading && !isError) {
-  //   const closest = locationData.data.location.location;
-  //   setLocation(closest);
-  // }
 
   return (
     <LocationBox>
@@ -39,9 +35,12 @@ const LocationBar = () => {
       <Autocomplete
         sx={{ width: "100%" }}
         disablePortal
-        value={location}
-        onChange={(e, newValue) => setLocation(newValue)}
-        onInputChange={(e, newValue) => setLocation(newValue)}
+        value={myLocation}
+        onChange={(e, newValue) => {
+          setMyLocation(newValue);
+          console.log(myLocation);
+        }}
+        onInputChange={(e, newValue) => setMyLocation(newValue)}
         options={locations}
         renderInput={(params) => (
           <TextField
