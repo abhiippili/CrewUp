@@ -107,7 +107,6 @@ const PostTask = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTaskData({ ...taskData, [name]: value });
-    console.log(taskData);
   };
 
   const handleCategoryChange = (e) => {

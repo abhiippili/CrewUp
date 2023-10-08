@@ -65,12 +65,19 @@ const TasksContainer = ({ task }) => {
         </Typography>
         <Value>{task.location.location}</Value>
       </FlexBox>
+
       <FlexBox sx={{ justifyContent: "space-between" }}>
         <FlexBox>
           <Typography>
             <b>Offered/Wage: </b>
           </Typography>
           <Value>{task.salary}</Value>
+        </FlexBox>
+        <FlexBox>
+          <Typography>
+            <b>Date Posted : </b>
+          </Typography>
+          <Value>{task.datePosted.slice(0, 10)}</Value>
         </FlexBox>
         <FlexBox>
           <Typography>

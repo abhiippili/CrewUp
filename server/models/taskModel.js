@@ -40,6 +40,11 @@ const taskSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please provide a phone number"],
     trim: true
+  },
+  datePosted: {
+    type: Date,
+    default: Date.now,
+    format: "YYYY-MM-DD"
   }
 });
 
