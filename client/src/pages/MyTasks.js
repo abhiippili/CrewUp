@@ -32,10 +32,10 @@ const MyTasks = () => {
   return (
     <div>
       <Grid container spacing={5} sx={{ padding: "2rem 3rem" }}>
-        <Grid item xs={2}>
+        <Grid item xs={2.5}>
           <ProfileSideBox />
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={9.5}>
           <StyledPaper elevation={3}>
             <Typography>
               <b>Tasks you created : </b>
