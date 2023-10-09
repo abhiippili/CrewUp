@@ -89,8 +89,12 @@ const Tasks = () => {
     return <div>Error</div>;
   }
 
-  console.log("tasks" + tasksData);
   const tasks = tasksData.data.tasks;
+  const taskTitles = tasks.map((task) => task.title);
+  const shuffleArray = () => {
+    taskTitles.sort(() => Math.random() - 0.5);
+  };
+  shuffleArray();
 
   return (
     <Box sx={{ padding: "1rem 2rem" }}>
@@ -103,7 +107,7 @@ const Tasks = () => {
               freeSolo
               disablePortal
               id="combo-box-demo"
-              options={options}
+              options={taskTitles}
               renderInput={(params) => (
                 <TextField {...params} placeholder="Search by title" />
               )}
@@ -151,5 +155,3 @@ const Tasks = () => {
 };
 
 export default Tasks;
-
-const options = ["ubejsjk", "sjkngdkj"];

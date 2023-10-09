@@ -5,15 +5,7 @@ const AppError = require("./../utils/appError");
 const User = require("../models/userModel");
 
 exports.getAllTasks = catchAsync(async (req, res, next) => {
-  const query = Task.find();
-  let features = new APIFeatures(query, req.query);
-  if (req.query.title) {
-    features = new APIFeatures(query, req.query).filter();
-  } else if (req.query.sort) {
-    features = new APIFeatures(query, req.query).sort();
-  } else if (req.query.title && req.query.sort) {
-    features = new APIFeatures(query, req.query).filter().sort();
-  }
+  const features = new APIFeatures(Task.find(), req.query).filter().sort();
   const tasks = await features.query.populate("category").populate("location");
   res.status(200).json({
     status: "success",

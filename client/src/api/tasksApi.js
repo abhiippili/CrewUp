@@ -5,8 +5,18 @@ const tasksApi = axios.create({
 });
 
 export const getAllTasks = async ({ titleFilter, sort }) => {
-  console.log(`title=${titleFilter}&sort=${sort}`);
-  const response = await tasksApi.get(`/?title=${titleFilter}&sort=${sort}`);
+  if (titleFilter !== undefined) {
+    const response = await tasksApi.get(`/?title=${titleFilter}`);
+    return response.data;
+  }
+  if (sort !== undefined) {
+    const response = await tasksApi.get(`/?sort=${sort}`);
+    return response.data;
+  }
+  if (titleFilter !== undefined && sort !== undefined) {
+    return response.data;
+  }
+  const response = await tasksApi.get("/");
   return response.data;
 };
 
