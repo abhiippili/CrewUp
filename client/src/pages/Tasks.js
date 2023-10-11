@@ -14,6 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@tanstack/react-query";
 import { getAllTasks } from "../api/tasksApi";
 import TasksContainer from "../components/TasksContainer";
+import { useNavigate } from "react-router-dom";
 
 const sortOptions = [
   { label: "Date Posted : Latest to Oldest", value: "+datePosted" },
@@ -61,24 +62,37 @@ const StyledPaper = styled(Paper)({
 });
 
 const Tasks = () => {
-  const [titleFilter, setTitleFilter] = useState(null);
-  const [sort, setSort] = useState(null);
+  const [userInput, setUserInput] = useState({
+    search: "",
+    sort: ""
+  });
+  const navigate = useNavigate();
+  const [inputSubmit, setInputSubmit] = useState(true);
 
   const {
     data: tasksData,
     isLoading,
     isError
   } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: getAllTasks
+    queryKey: ["tasks", userInput],
+    queryFn: () => getAllTasks(userInput)
   });
 
   const handleInputChange = (e) => {
-    setTitleFilter(e.target.value);
+    const { name, value } = e.target;
+    setUserInput({ ...userInput, [name]: value });
+    console.log(userInput);
   };
 
-  const handleSortChange = (e) => {
-    setSort(e.target.value);
+  const handleSearchSubmit = () => {
+    // setInputSubmit(true);
+  };
+
+  const handleEnterKey = (e) => {
+    if (e.key == "Enter") {
+      //post req
+      // setInputSubmit(true);
+    }
   };
 
   if (isLoading) {
@@ -108,11 +122,21 @@ const Tasks = () => {
               disablePortal
               id="combo-box-demo"
               options={taskTitles}
+              onInputChange={handleInputChange}
+              value={userInput.search}
               renderInput={(params) => (
-                <TextField {...params} placeholder="Search by title" />
+                <TextField
+                  name="search"
+                  {...params}
+                  onKeyDown={handleEnterKey}
+                  placeholder="Search by title"
+                />
               )}
             />
-            <SearchIcon />
+            <SearchIcon
+              onClick={handleSearchSubmit}
+              sx={{ cursor: "pointer" }}
+            />
           </StyledSearchBox>
         </Grid>
         <Grid item xs={3.5}>
@@ -124,11 +148,11 @@ const Tasks = () => {
                 fullWidth
                 name="sort"
                 label="Sort"
-                value={sort}
+                value={userInput.sort}
                 variant="outlined"
                 color="secondary"
                 size="small"
-                onChange={handleSortChange}
+                onChange={handleInputChange}
               >
                 {sortOptions.map((el) => {
                   return <MenuItem value={el.value}>{el.label}</MenuItem>;

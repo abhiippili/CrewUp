@@ -4,16 +4,17 @@ const tasksApi = axios.create({
   baseURL: "http://localhost:5000/api/tasks"
 });
 
-export const getAllTasks = async ({ titleFilter, sort }) => {
-  if (titleFilter !== undefined) {
-    const response = await tasksApi.get(`/?title=${titleFilter}`);
+export const getAllTasks = async ({ search, sort }) => {
+  console.log("API : " + search + " " + sort);
+  if (search !== "") {
+    const response = await tasksApi.get(`/?title=${search}`);
     return response.data;
   }
-  if (sort !== undefined) {
+  if (sort !== "") {
     const response = await tasksApi.get(`/?sort=${sort}`);
     return response.data;
   }
-  if (titleFilter !== undefined && sort !== undefined) {
+  if (search !== "" && sort !== "") {
     return response.data;
   }
   const response = await tasksApi.get("/");
