@@ -42,7 +42,8 @@ const TaskFilter = () => {
     isError: error1
   } = useQuery({
     queryKey: ["locations"],
-    queryFn: getLocations
+    queryFn: getLocations,
+    refetchOnWindowFocus: false
   });
 
   const {
@@ -51,7 +52,8 @@ const TaskFilter = () => {
     isError: error2
   } = useQuery({
     queryKey: ["categories"],
-    queryFn: getCategories
+    queryFn: getCategories,
+    refetchOnWindowFocus: false
   });
 
   const [filters, setFilters] = useState({
@@ -70,8 +72,6 @@ const TaskFilter = () => {
   const categories = categoriesData.data.categories;
   const locations = locationsData.data.locations;
 
-  console.log(categories);
-  console.log(locations);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });

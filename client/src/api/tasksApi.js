@@ -15,6 +15,11 @@ export const getAllTasks = async ({ search, sort }) => {
     return response.data;
   }
   if (search !== "" && sort !== "") {
+    const response = await tasksApi.get(`/?title=${search}&sort=${sort}`);
+    return response.data;
+  }
+  if (search === undefined || sort === undefined) {
+    const response = await tasksApi.get("/");
     return response.data;
   }
   const response = await tasksApi.get("/");

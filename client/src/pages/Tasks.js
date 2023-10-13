@@ -11,14 +11,14 @@ import {
 import React, { useState } from "react";
 import TaskFilters from "./../components/TasksPage/TaskFilters";
 import SearchIcon from "@mui/icons-material/Search";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAllTasks } from "../api/tasksApi";
 import TasksContainer from "../components/TasksContainer";
 import { useNavigate } from "react-router-dom";
 
 const sortOptions = [
-  { label: "Date Posted : Latest to Oldest", value: "+datePosted" },
-  { label: "Date Posted : Oldest to Latest", value: "-datePosted" },
+  { label: "Date Posted : Latest to Oldest", value: "-datePosted" },
+  { label: "Date Posted : Oldest to Latest", value: "+datePosted" },
   {
     label: "Wage : Desc to Asc",
     value: "-salary"
@@ -62,6 +62,8 @@ const StyledPaper = styled(Paper)({
 });
 
 const Tasks = () => {
+  const queryClient = useQueryClient();
+
   const [userInput, setUserInput] = useState({
     search: "",
     sort: ""
@@ -75,23 +77,17 @@ const Tasks = () => {
     isError
   } = useQuery({
     queryKey: ["tasks", userInput],
-    queryFn: () => getAllTasks(userInput)
+    queryFn: () => getAllTasks(userInput),
+    refetchOnWindowFocus: false
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserInput({ ...userInput, [name]: value });
-    console.log(userInput);
-  };
-
   const handleSearchSubmit = () => {
-    // setInputSubmit(true);
+    queryClient.invalidateQueries({ queryKey: ["tasks", userInput] });
   };
 
   const handleEnterKey = (e) => {
     if (e.key == "Enter") {
-      //post req
-      // setInputSubmit(true);
+      queryClient.invalidateQueries({ queryKey: ["tasks", userInput] });
     }
   };
 
@@ -122,11 +118,13 @@ const Tasks = () => {
               disablePortal
               id="combo-box-demo"
               options={taskTitles}
-              onInputChange={handleInputChange}
+              onChange={(e, newValue) => {
+                setUserInput({ ...userInput, search: newValue });
+                console.log("Input change " + userInput);
+              }}
               value={userInput.search}
               renderInput={(params) => (
                 <TextField
-                  name="search"
                   {...params}
                   onKeyDown={handleEnterKey}
                   placeholder="Search by title"
@@ -152,7 +150,10 @@ const Tasks = () => {
                 variant="outlined"
                 color="secondary"
                 size="small"
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  setUserInput({ ...userInput, sort: e.target.value });
+                  console.log("Sort Box : " + userInput);
+                }}
               >
                 {sortOptions.map((el) => {
                   return <MenuItem value={el.value}>{el.label}</MenuItem>;
