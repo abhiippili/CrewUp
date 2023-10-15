@@ -38,7 +38,7 @@ export const getMyTasks = async () => {
 export const postTask = async (body) => {
   const response = await tasksApi.post("/", body, {
     headers: {
-      Authorization: "Bearer" + localStorage.getItem("token")
+      Authorization: "Bearer " + localStorage.getItem("token")
     }
   });
   return response.data;

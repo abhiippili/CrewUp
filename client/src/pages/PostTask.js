@@ -58,7 +58,7 @@ const PostTask = () => {
     subCategory: "",
     description: "",
     address: "",
-    city: "",
+    location: "",
     salary: "",
     phoneNumber: ""
   });
@@ -107,6 +107,7 @@ const PostTask = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTaskData({ ...taskData, [name]: value });
+    console.log(taskData);
   };
 
   const handleCategoryChange = (e) => {
@@ -170,7 +171,7 @@ const PostTask = () => {
               }}
             >
               {categories.map((el) => {
-                return <MenuItem value={el.category}>{el.category}</MenuItem>;
+                return <MenuItem value={el._id}>{el.category}</MenuItem>;
               })}
             </TextField>
           </FlexBox>
@@ -227,13 +228,13 @@ const PostTask = () => {
               variant="standard"
               fullWidth
               required
-              name="city"
-              value={taskData.city}
+              name="location"
+              value={taskData.location}
               onChange={handleInputChange}
               label="Select the city of the task"
             >
               {locations.map((el) => {
-                return <MenuItem value={el.location}>{el.location}</MenuItem>;
+                return <MenuItem value={el._id}>{el.location}</MenuItem>;
               })}
             </TextField>
           </FlexBox>

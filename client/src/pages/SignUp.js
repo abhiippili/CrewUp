@@ -25,8 +25,9 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 import { signUp } from "../api/authApi";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../contexts/AuthContext";
+import { getLocations } from "../api/locationsApi";
 
 const StyledPaper = styled(Paper)({
   margin: "4rem  auto",
@@ -70,7 +71,7 @@ const AlternateText = styled(Typography)({
   cursor: "pointer"
 });
 
-const cities = [
+const locations = [
   "Hyderabad",
   "Rajahmundry",
   "Bhimavaram",
@@ -91,6 +92,15 @@ const SignUp = () => {
       return navigate("/myprofile");
     }
   }, []);
+
+  const {
+    data: locationsData,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["locations"],
+    queryFn: getLocations
+  });
 
   const [user, setUser] = useState({
     email: "",
@@ -147,6 +157,11 @@ const SignUp = () => {
     signUpMutate.mutate(user);
   };
 
+  if (isLoading || isError) {
+    return <div>Error Loading Locations...</div>;
+  }
+
+  const locations = locationsData.data.locations;
   return (
     <div>
       <div style={{ display: "flex", margin: "0.5rem auto" }}>
@@ -342,8 +357,10 @@ const SignUp = () => {
                   color="secondary"
                   onChange={handleInputChange}
                 >
-                  {cities.map((city) => (
-                    <MenuItem value={city}>{city}</MenuItem>
+                  {locations.map((location) => (
+                    <MenuItem value={location.location}>
+                      {location.location}
+                    </MenuItem>
                   ))}
                 </TextField>
               </FlexBox>
